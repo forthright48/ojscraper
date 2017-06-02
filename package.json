@@ -1,0 +1,27 @@
+{
+  "name": "ojscraper",
+  "version": "0.0.0",
+  "description": "\"A module that scraps user information from various OJ\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"node test/index.js\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forthright48/ojscraper.git"
+  },
+  "keywords": [
+    "scrapper",
+    "competitive-programming"
+  ],
+  "author": "Mohammad Samiul Islam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/forthright48/ojscraper/issues"
+  },
+  "homepage": "https://github.com/forthright48/ojscraper#readme",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1"
+  }
+}
