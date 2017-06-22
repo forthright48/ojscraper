@@ -25,6 +25,8 @@ function ojscrapper(options, callback) {
     error.name = 'invalidParamter';
     return callback(error);
   }
+
+  return scrapers[ojname](username, callback);
 }
 
 module.exports = ojscrapper;

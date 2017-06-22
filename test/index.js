@@ -2,17 +2,21 @@ const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
 
-const ojscraper
+const ojscraper = require('../index');
 
 app.set('port', 3000);
 
-/* Basic Routes*/
-app.use('/:ojname/:username', function(req, res) {
-  const {ojname, username} = req.params;
+/* Basic Routes */
+app.get('/:ojname/:username', function(req, res, next) {
+  const { ojname, username } = req.params;
+
+  ojscraper({ ojname, username }, function(err, stats) {
+    if (err) return next(err);
+    else return res.send(stats);
+  });
 });
 
-
-app.use(function(err, req, res) {
+app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send(err);
 });
