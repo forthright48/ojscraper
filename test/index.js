@@ -7,14 +7,24 @@ const ojscraper = require('../index');
 app.set('port', 3001);
 
 /* Basic Routes */
-app.get('/:ojname/:username', function(req, res, next) {
+app.get('/userinfo/:ojname/:username', function(req, res, next) {
   const { ojname, username } = req.params;
 
-  ojscraper({ojname, username}).then(function(stats) {
-    return res.send(stats);
-  }).catch(function(err) {
-    return next(err);
-  });
+  ojscraper.getUserInfo({ojname, username})
+    .then(function(stats) {
+      return res.send(stats);
+    })
+    .catch(next);
+});
+
+app.get('/probleminfo/:ojname/:problemID', function(req, res, next) {
+  const { ojname, problemID } = req.params;
+
+  ojscraper.getProblemInfo({ojname, problemID})
+    .then(function(stats) {
+      return res.send(stats);
+    })
+    .catch(next);
 });
 
 app.use(function(err, req, res, next) {
