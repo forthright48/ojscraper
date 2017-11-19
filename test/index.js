@@ -4,15 +4,16 @@ const server = require('http').createServer(app);
 
 const ojscraper = require('../index');
 
-app.set('port', 3000);
+app.set('port', 3001);
 
 /* Basic Routes */
 app.get('/:ojname/:username', function(req, res, next) {
   const { ojname, username } = req.params;
 
-  ojscraper({ ojname, username }, function(err, stats) {
-    if (err) return next(err);
-    else return res.send(stats);
+  ojscraper({ojname, username}).then(function(stats) {
+    return res.send(stats);
+  }).catch(function(err) {
+    return next(err);
   });
 });
 
