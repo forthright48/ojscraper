@@ -22,11 +22,27 @@ ojscraper.getProblemInfo({
 ```
 Only promise is returned. Callback is not supported.
 
-# Supported OJ
+# Methods
+
+There is only method supported currently:
+
+## `getProblemInfo()`
+
+It accepts an object as parameter. The object must have the following two fields: `ojname` and `problemID`. Look below for possible values of `ojname` and their corresponding problemID formats.
+
+# Values of `ojname`
 
 1. Uva Online Judge: 'uva'
+1. Codeforces: 'cf'
 
 Well, that's it for now.
+
+# Formats of `problemID`
+
+`problemID` must match the following regex:
+
+1. uva: `^\\d{3,5}$`
+1. cf: `^\\d+[A-Z]`
 
 # Todo
 
