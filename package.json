@@ -1,6 +1,6 @@
 {
   "name": "ojscraper",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "\"A module that scraps user information from various OJ\"",
   "main": "index.js",
   "scripts": {
