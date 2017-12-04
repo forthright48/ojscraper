@@ -7,15 +7,15 @@ const ojscraper = require('../index');
 app.set('port', 3001);
 
 /* Basic Routes */
-// app.get('/userinfo/:ojname/:username', function(req, res, next) {
-//   const { ojname, username } = req.params;
-//
-//   ojscraper.getUserInfo({ojname, username})
-//     .then(function(stats) {
-//       return res.send(stats);
-//     })
-//     .catch(next);
-// });
+app.get('/userinfo/:ojname/:username', function(req, res, next) {
+  const { ojname, username } = req.params;
+
+  ojscraper.getUserInfo({ojname, username})
+    .then(function(stats) {
+      return res.send(stats);
+    })
+    .catch(next);
+});
 
 app.get('/probleminfo/:ojname/:problemID', function(req, res, next) {
   const { ojname, problemID } = req.params;
