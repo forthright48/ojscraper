@@ -24,7 +24,7 @@ Only promise is returned. Callback is not supported.
 
 # Methods
 
-There is only method supported currently:
+There is only one method supported currently:
 
 ## `getProblemInfo()`
 
