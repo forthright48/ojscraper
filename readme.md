@@ -75,6 +75,7 @@ Well, that's it for now.
 
 1. cf: `^\d+[A-Z]`
 1. hdu: `\d{4}`
+1. poj: `\d{4}`
 1. spoj: `^[A-Z0-9_]+$`
 1. uva: `^\d{3,5}$`
 
