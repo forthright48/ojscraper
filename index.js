@@ -1,4 +1,5 @@
 const scrapers = {
+  cc: require('./lib/ccScraper'),
   cf: require('./lib/cfScraper'),
   hdu: require('./lib/hduScraper'),
   poj: require('./lib/pojScraper'),
