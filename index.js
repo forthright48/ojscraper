@@ -5,6 +5,7 @@ const scrapers = {
   poj: require('./lib/pojScraper'),
   spoj: require('./lib/spojScraper'),
   uva: require('./lib/uvaScraper'),
+  vjudge: require('./lib/vjudgeScraper'),
   // csa: require('./lib/csaScraper'),
 };
 
@@ -15,10 +16,18 @@ const scrapers = {
  */
 function getUserInfo(options) {
   return new Promise(function(resolve, reject) {
-    const { ojname, username } = options;
+    const { ojname, username, subojname } = options;
     if (!ojname || !username) {
       const error = new Error(
         'Need to provide both ojname and username parameter'
+      );
+      error.name = 'parameterMissing';
+      return reject(error);
+    }
+
+    if (ojname === 'vjudge' && !subojname) {
+      const error = new Error(
+        'Need to provide subojname for vjudge'
       );
       error.name = 'parameterMissing';
       return reject(error);
@@ -31,7 +40,7 @@ function getUserInfo(options) {
       error.name = 'invalidParamter';
       return reject(error);
     }
-    return resolve(scrapers[ojname].getUserInfo(username));
+    return resolve(scrapers[ojname].getUserInfo(username, subojname));
   });
 }
 

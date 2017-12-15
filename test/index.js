@@ -9,8 +9,9 @@ app.set('port', 3001);
 /* Basic Routes */
 app.get('/userinfo/:ojname/:username', function(req, res, next) {
   const { ojname, username } = req.params;
+  const subojname = req.query.suboj;
 
-  ojscraper.getUserInfo({ojname, username})
+  ojscraper.getUserInfo({ojname, username, subojname})
     .then(function(stats) {
       return res.send(stats);
     })
