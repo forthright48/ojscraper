@@ -62,10 +62,14 @@ It accepts an object as parameter. The object must have the following two fields
 
 # Values of `ojname`
 
+1. [CodeChef](https://www.codechef.com/): 'cc'
 1. [Codeforces](http://codeforces.com/): 'cf'
 1. [HDU](http://acm.hdu.edu.cn/): 'hdu'
+1. [LOJ](http://www.lightoj.com/login_main.php): 'loj'
+1. [POJ](http://poj.org/): 'poj'
 1. [SPOJ](http://www.spoj.com/): 'spoj'
 1. [Uva Online Judge](https://uva.onlinejudge.org/): 'uva'
+1. [Vjudge](https://vjudge.net/): 'vjudge'
 
 Well, that's it for now.
 
@@ -73,11 +77,44 @@ Well, that's it for now.
 
 `problemID` must match the following regex:
 
+1. cc: `^[A-Z0-9_]+$`
 1. cf: `^\d+[A-Z]`
 1. hdu: `\d{4}`
+1. loj: `\d{4}`
 1. poj: `\d{4}`
 1. spoj: `^[A-Z0-9_]+$`
 1. uva: `^\d{3,5}$`
+
+# Special Cases
+
+## LightOJ
+
+Since the site is private, you need to provide a set of credential to access any info.
+
+```
+ojscraper.getProblemInfo({
+  ojname: 'loj',
+  problemID: '1000',
+  credential: {
+    userId: USERID_FOR_LOGIN,
+    password: PASSWORD_FOR_LOGIN
+  }
+})
+```
+
+## VJudge
+
+You can only get userinfo from vjudge, and that too for a particular sub oj.
+
+```
+ojscraper.getProblemInfo({
+  ojname: 'loj',
+  problemID: '1000',
+  subojname: 'uva'
+})
+
+//Output: All problems from UVa that user solved in Vjudge
+```
 
 # TODO
 

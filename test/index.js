@@ -11,8 +11,16 @@ app.get('/userinfo/:ojname/:username', function(req, res, next) {
   const { ojname, username } = req.params;
   const subojname = req.query.suboj;
 
-  ojscraper.getUserInfo({ojname, username, subojname})
+  let userId;
+  let password;
+  if (ojname === 'loj') {
+    userId = req.query.userId;
+    password = req.query.password;
+  }
+
+  ojscraper.getUserInfo({ojname, username, subojname, credential: {userId, password}})
     .then(function(stats) {
+      console.log(stats);
       return res.send(stats);
     })
     .catch(next);
@@ -21,7 +29,14 @@ app.get('/userinfo/:ojname/:username', function(req, res, next) {
 app.get('/probleminfo/:ojname/:problemID', function(req, res, next) {
   const { ojname, problemID } = req.params;
 
-  ojscraper.getProblemInfo({ojname, problemID})
+  let userId;
+  let password;
+  if (ojname === 'loj') {
+    userId = req.query.userId;
+    password = req.query.password;
+  }
+
+  ojscraper.getProblemInfo({ojname, problemID, credential: {userId, password}})
     .then(function(stats) {
       return res.send(stats);
     })

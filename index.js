@@ -2,6 +2,7 @@ const scrapers = {
   cc: require('./lib/ccScraper'),
   cf: require('./lib/cfScraper'),
   hdu: require('./lib/hduScraper'),
+  loj: require('./lib/lojScraper'),
   poj: require('./lib/pojScraper'),
   spoj: require('./lib/spojScraper'),
   uva: require('./lib/uvaScraper'),
@@ -16,7 +17,7 @@ const scrapers = {
  */
 function getUserInfo(options) {
   return new Promise(function(resolve, reject) {
-    const { ojname, username, subojname } = options;
+    const {ojname, username, subojname, credential} = options;
     if (!ojname || !username) {
       const error = new Error(
         'Need to provide both ojname and username parameter'
@@ -33,6 +34,23 @@ function getUserInfo(options) {
       return reject(error);
     }
 
+    if (ojname === 'loj') {
+      let msg;
+      if (!credential) {
+        msg = 'Need to provide credential for loj';
+      } else {
+        const {userId, password} = credential;
+        if (!userId || !password) {
+          msg = 'Need to provide userId and pasword in credential';
+        }
+      }
+      if (msg) {
+        const error = new Error(msg);
+        error.name = 'parameterMissing';
+        return reject(error);
+      }
+    }
+
     if (!scrapers[ojname]) {
       const error = new Error(
         'ojname not found - please refer to documenation'
@@ -40,7 +58,13 @@ function getUserInfo(options) {
       error.name = 'invalidParamter';
       return reject(error);
     }
-    return resolve(scrapers[ojname].getUserInfo(username, subojname));
+    if (ojname === 'loj') {
+      return resolve(scrapers[ojname].getUserInfo(username, credential));
+    } else if (ojname === 'vjudge') {
+      return resolve(scrapers[ojname].getUserInfo(username, subojname));
+    } else {
+      return resolve(scrapers[ojname].getUserInfo(username));
+    }
   });
 }
 
@@ -51,13 +75,30 @@ function getUserInfo(options) {
  */
 function getProblemInfo(options) {
   return new Promise(function(resolve, reject) {
-    const { ojname, problemID } = options;
+    const {ojname, problemID, credential} = options;
     if (!ojname || !problemID) {
       const error = new Error(
         'Need to provide both ojname and problemID parameter'
       );
       error.name = 'parameterMissing';
       return reject(error);
+    }
+
+    if (ojname === 'loj') {
+      let msg;
+      if (!credential) {
+        msg = 'Need to provide credential for loj';
+      } else {
+        const {userId, password} = credential;
+        if (!userId || !password) {
+          msg = 'Need to provide userId and pasword in credential';
+        }
+      }
+      if (msg) {
+        const error = new Error(msg);
+        error.name = 'parameterMissing';
+        return reject(error);
+      }
     }
 
     if (!scrapers[ojname]) {
@@ -67,7 +108,9 @@ function getProblemInfo(options) {
       error.name = 'invalidParamter';
       return reject(error);
     }
-    return resolve(scrapers[ojname].getProblemInfo(problemID));
+    if (ojname === 'loj') {
+      return resolve(scrapers[ojname].getProblemInfo(problemID, credential));
+    } else return resolve(scrapers[ojname].getProblemInfo(problemID));
   });
 }
 
