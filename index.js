@@ -7,7 +7,7 @@ const scrapers = {
   spoj: require('./lib/spojScraper'),
   uva: require('./lib/uvaScraper'),
   vjudge: require('./lib/vjudgeScraper'),
-  // csa: require('./lib/csaScraper'),
+  csa: require('./lib/csaScraper'),
 };
 
 /**
