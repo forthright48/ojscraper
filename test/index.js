@@ -4,7 +4,7 @@ const server = require('http').createServer(app);
 
 const ojscraper = require('../index');
 
-app.set('port', 3001);
+app.set('port', 4000);
 
 /* Basic Routes */
 app.get('/userinfo/:ojname/:username', function(req, res, next) {
@@ -20,7 +20,6 @@ app.get('/userinfo/:ojname/:username', function(req, res, next) {
 
   ojscraper.getUserInfo({ojname, username, subojname, credential: {userId, password}})
     .then(function(stats) {
-      console.log(stats);
       return res.send(stats);
     })
     .catch(next);
