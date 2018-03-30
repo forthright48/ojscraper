@@ -70,6 +70,8 @@ It accepts an object as parameter. The object must have the following two fields
 1. [SPOJ](http://www.spoj.com/): 'spoj'
 1. [Uva Online Judge](https://uva.onlinejudge.org/): 'uva'
 1. [Vjudge](https://vjudge.net/): 'vjudge'
+1. [CSAcademy](https://csacademy.com): 'csa'
+1. [AtCoder](https://atcoder.jp/): 'atc'
 
 Well, that's it for now.
 

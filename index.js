@@ -8,6 +8,7 @@ const scrapers = {
   uva: require('./lib/uvaScraper'),
   vjudge: require('./lib/vjudgeScraper'),
   csa: require('./lib/csaScraper'),
+  atc: require('./lib/atcScraper'),
 };
 
 /**
