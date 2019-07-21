@@ -59,12 +59,19 @@ function getUserInfo(options) {
       error.name = 'invalidParamter';
       return reject(error);
     }
-    if (ojname === 'loj') {
-      return resolve(scrapers[ojname].getUserInfo(username, credential));
-    } else if (ojname === 'vjudge') {
-      return resolve(scrapers[ojname].getUserInfo(username, subojname));
-    } else {
-      return resolve(scrapers[ojname].getUserInfo(username));
+
+    try {
+      let data
+      if (ojname === 'loj') {
+        data = scrapers[ojname].getUserInfo(username, credential)
+      } else if (ojname === 'vjudge') {
+        data = scrapers[ojname].getUserInfo(username, subojname)
+      } else {
+        data = scrapers[ojname].getUserInfo(username)
+      }
+      return resolve(data)
+    } catch (err) {
+      return reject(err)
     }
   });
 }
@@ -109,9 +116,18 @@ function getProblemInfo(options) {
       error.name = 'invalidParamter';
       return reject(error);
     }
-    if (ojname === 'loj') {
-      return resolve(scrapers[ojname].getProblemInfo(problemID, credential));
-    } else return resolve(scrapers[ojname].getProblemInfo(problemID));
+
+    try {
+      let data
+      if (ojname === 'loj') {
+        data = scrapers[ojname].getProblemInfo(problemID, credential)
+      } else {
+        data = scrapers[ojname].getProblemInfo(problemID)
+      }
+      return resolve(data)
+    } catch(err) {
+      return reject(err)
+    }
   });
 }
 
