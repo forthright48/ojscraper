@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/forthright48/ojscraper#readme",
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^6.6.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^5.0.0",
